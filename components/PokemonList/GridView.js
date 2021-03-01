@@ -59,10 +59,10 @@ const GridListing = styled.div`
 const ListingCard = styled.a`
   text-decoration: none !important;
   background-color: #ef5350;
-  border: 2px solid #d9d9d9;
+  border: 2px solid #f8bab9;
   border-radius: 10px;
   &:hover {
-    border: 2px solid gray;
+    border: 2px solid #bb1411;
   }
 `
 

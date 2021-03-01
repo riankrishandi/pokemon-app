@@ -70,7 +70,7 @@ const StyledImage = styled.img`
 `
 
 const StyledP = styled.p`
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `
 
 const StyledSpan = styled.span`
@@ -78,6 +78,5 @@ const StyledSpan = styled.span`
 `
 
 const ReleaseButton = styled(Button)`
-  width: 75px;
   background-color: #ef5350 !important;
 `

@@ -31,7 +31,7 @@ function CatchModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title>
-          Catch Pokemon
+          Release Pokemon
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -68,25 +68,23 @@ function CatchModal(props) {
               </FailedText>
             </>
           }
+          <Footer>
+            <SaveButton
+              disabled={loading || !success || nameInput == ""}
+              onClick={handleSave}
+              variant="success"
+            >
+              Save
+            </SaveButton>
+            <CloseButton
+              onClick={onHide}
+              variant="danger"
+            >
+              Close
+            </CloseButton>
+          </Footer>
         </Content>
       </Modal.Body>
-      <Modal.Footer>
-        <Footer>
-          <SaveButton
-            disabled={loading || !success || nameInput == ""}
-            onClick={handleSave}
-            variant="success"
-          >
-            Save
-          </SaveButton>
-          <CloseButton
-            onClick={onHide}
-            variant="danger"
-          >
-            Close
-          </CloseButton>
-        </Footer>
-      </Modal.Footer>
     </Modal>
   )
 }
@@ -99,6 +97,11 @@ const Content = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
+`
+
+const HeaderText = styled.h6`
+  font-weight: bold;
+  margin-bottom: 0px;
 `
 
 const StyledImage = styled.img`
@@ -142,9 +145,10 @@ const FailedText = styled.p`
 `
 
 const Footer = styled.div`
+  width: 200px;
   display: flex;
-  gap: 15px;
-  margin: 0 auto;
+  justify-content: space-around;
+  margin-top: 20px;
 `
 
 const CloseButton = styled(Button)`
