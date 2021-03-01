@@ -53,7 +53,7 @@ const CardWrapper = styled.div`
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
   &:hover {
-    border: 2px solid #ef5350;
+    border: 1px solid #ef5350;
   }
 `
 
