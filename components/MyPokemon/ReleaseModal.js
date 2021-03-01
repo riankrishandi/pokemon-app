@@ -21,8 +21,8 @@ function ReleaseModal(props) {
       aria-labelledby="catch-modal"
       centered
     >
-      <Modal.Header closeButton>
-        <Modal.Title>
+      <Modal.Header>
+        <Modal.Title as="h6">
           Release Pokemon
         </Modal.Title>
       </Modal.Header>
@@ -36,14 +36,22 @@ function ReleaseModal(props) {
             <StyledSpan> {pokemon.nickName} </StyledSpan>
             ?
           </StyledP>
-          <ReleaseButton
-            onClick={() => {
-              handleRelease(pokemon.nickName)
-            }}
-            variant="danger"
-          >
-            Release
+          <Footer>
+            <ReleaseButton
+              onClick={() => {
+                handleRelease(pokemon.nickName)
+              }}
+              variant="danger"
+            >
+              Release
           </ReleaseButton>
+            <CancelButton
+              onClick={onHide}
+              variant="dark"
+            >
+              Cancel
+            </CancelButton>
+          </Footer>
         </Content>
       </Modal.Body>
     </Modal>
@@ -76,7 +84,18 @@ const StyledP = styled.p`
 const StyledSpan = styled.span`
   font-weight: bold;
 `
+const Footer = styled.div`
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+`
 
 const ReleaseButton = styled(Button)`
   background-color: #ef5350 !important;
+  width: 90px;
+`
+
+const CancelButton = styled(Button)`
+  width: 90px;
+  background-color: #343a40 !important;
 `

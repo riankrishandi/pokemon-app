@@ -29,9 +29,9 @@ function CatchModal(props) {
       aria-labelledby="catch-modal"
       centered
     >
-      <Modal.Header closeButton>
-        <Modal.Title>
-          Release Pokemon
+      <Modal.Header>
+        <Modal.Title as="h6">
+          Catch Pokemon
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -147,15 +147,15 @@ const FailedText = styled.p`
 const Footer = styled.div`
   width: 200px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-top: 20px;
 `
 
 const CloseButton = styled(Button)`
-  width: 75px;
+  width: 90px;
   background-color: #ef5350 !important;
 `
 
 const SaveButton = styled(Button)`
-  width: 75px;
+  width: 90px;
 `

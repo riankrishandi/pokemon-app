@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
 import Navbar from 'react-bootstrap/Navbar'
@@ -6,37 +6,51 @@ import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import CustomLink from './CustomLink'
 
-const StyledNavbar = styled(Navbar)`
-  background-color: #ef5350 !important;
-`
-
 function MainNav() {
+  const [showNavbar, setShowNavbar] = useState(false)
+
+  function toggleNavbar() {
+    setShowNavbar(prev => !prev)
+  }
+
+  function closeNavbar() {
+    setShowNavbar(false)
+  }
+
   return (
-    <StyledNavbar collapseOnSelect bg="dark" expand="lg" variant="dark">
+    <StyledNavbar
+      expanded={showNavbar}
+      collapseOnSelect
+      bg="dark"
+      expand="lg"
+      variant="dark"
+    >
       <Container fluid="lg">
         <Link href="/" passHref>
           <Navbar.Brand className="mr-auto">
             Pokemon
           </Navbar.Brand>
         </Link>
-
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Toggle
+          aria-controls="responsive-navbar-nav"
+          onClick={toggleNavbar}
+        />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ml-auto">
-            <CustomLink href="/" passHref>
-              <Nav.Link>
+            <CustomLink href="/">
+              <a className="nav-link" onClick={closeNavbar}>
                 Home
-              </Nav.Link>
+              </a>
             </CustomLink>
-            <CustomLink href="/my-pokemon" passHref>
-              <Nav.Link>
+            <CustomLink href="/my-pokemon">
+              <a className="nav-link" onClick={closeNavbar}>
                 My Pokemon
-              </Nav.Link>
+              </a>
             </CustomLink>
-            <CustomLink href="/about" passHref>
-              <Nav.Link>
+            <CustomLink href="/about">
+              <a className="nav-link" onClick={closeNavbar}>
                 About
-              </Nav.Link>
+              </a>
             </CustomLink>
           </Nav>
         </Navbar.Collapse>
@@ -44,5 +58,9 @@ function MainNav() {
     </StyledNavbar>
   )
 }
+
+const StyledNavbar = styled(Navbar)`
+  background-color: #ef5350 !important;
+`
 
 export default MainNav

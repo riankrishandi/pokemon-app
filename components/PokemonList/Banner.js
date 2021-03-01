@@ -20,11 +20,11 @@ function Banner({ caughtNumber }) {
         src="/assets/pokemon-icon.png"
       />
       <InfoWrapper>
-        <Label>Caught Pokemons</Label>
+        <Label>Owned Total</Label>
         <Text>{caughtNumber}</Text>
         <StyledButton
           onClick={handleViewAll}
-          size="md"
+          size="sm"
           variant="danger"
         >
           View All
@@ -43,7 +43,8 @@ const BannerContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 30px;
   margin: auto;
   padding: 0 15px;
 `
@@ -54,7 +55,7 @@ const PokemonIcon = styled(Image)`
   object-fit: contain;
 `
 
-const InfoWrapper = styled.div`
+const InfoWrapper = styled.div` 
   text-align: center;  
   color: white;
 `
@@ -68,7 +69,7 @@ const Text = styled.h1`
 `
 
 const StyledButton = styled(Button)`
-  width: 100px;
+  width: 90px;
   margin-top: 10px;
   background-color: #ef5350 !important;
 `
