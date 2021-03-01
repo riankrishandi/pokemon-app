@@ -1,14 +1,22 @@
 import React from 'react'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
 import Button from 'react-bootstrap/Button'
 
 function Banner({ caughtNumber }) {
+  const router = useRouter()
+
   function handleViewAll() {
+    router.push("/my-pokemon")
   }
 
   return (
     <BannerContainer to="/my-pokemon">
       <PokemonIcon
+        priority
+        height={130}
+        width={130}
         src="/assets/pokemon-icon.png"
       />
       <InfoWrapper>
@@ -40,7 +48,7 @@ const BannerContainer = styled.div`
   padding: 0 15px;
 `
 
-const PokemonIcon = styled.img`
+const PokemonIcon = styled(Image)`
   height: 130px;
   width: 130px;
   object-fit: contain;

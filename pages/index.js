@@ -4,22 +4,30 @@ import {
   useRef,
   useCallback
 } from 'react'
-import { MyPokemonContext } from '../context'
+import Head from 'next/head'
+import styled from '@emotion/styled'
+import Alert from 'react-bootstrap/Alert'
+import Spinner from 'react-bootstrap/Spinner'
+import { AppContext } from '../context'
 import { usePokemonList } from '../hooks'
 import {
-  Layout,
   PokemonGridView,
   PokemonListBanner
 } from '../components'
 
 export default function PokemonList() {
-  const pokemonCtx = useContext(MyPokemonContext)
+  const {
+    pokemons: caught,
+    showNotif,
+    setShowNotif
+  } = useContext(AppContext)
+  const [offset, setOffset] = useState(0)
   const {
     pokemons = [],
     error,
     hasMore,
     loading
-  } = usePokemonList(0)
+  } = usePokemonList(offset)
 
   // infinite scroll observer
   const observer = useRef()
@@ -41,17 +49,56 @@ export default function PokemonList() {
   }, [loading, hasMore])
 
   return (
-    <Layout>
+    <>
+      <Head>
+        <title>Pokemon</title>
+      </Head>
       <PokemonListBanner
-        caughtNumber={pokemonCtx.pokemons.length}
+        caughtNumber={caught.length}
       />
+      {
+        showNotif && <>
+          <br />
+          <StyledAlert
+            onClose={() => setShowNotif(false)}
+            dismissible
+            variant="success"
+          >
+            New pokemon has been added to your collection
+          </StyledAlert>
+        </>
+      }
       <br />
       <h3>Find Pokemons</h3>
       <br />
+      {
+        error && <>
+          <StyledAlert
+            variant="danger"
+          >
+            Fetch data failed. Please refesh your page
+          </StyledAlert>
+          <br />
+        </>
+      }
       <PokemonGridView
         data={pokemons}
         lastListElementRef={lastListElementRef}
       />
-    </Layout>
+      <SpinnerWrapper>
+        {loading && <Spinner animation="border" />}
+      </SpinnerWrapper>
+    </>
   )
 }
+
+const SpinnerWrapper = styled.div`
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const StyledAlert = styled(Alert)`
+  margin: 0 15px;
+`

@@ -14,3 +14,8 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.form-control.is-invalid{
+  background-image: none !important;
+  padding: .375rem .75rem;
+}

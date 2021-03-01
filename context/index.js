@@ -1,19 +1,21 @@
 import React from 'react'
 
-const MyPokemonContext = React.createContext({
+const AppContext = React.createContext({
   pokemons: [],
   checkNickName: () => { },
   addPokemon: () => { },
-  releasePokemon: () => { }
+  releasePokemon: () => { },
+  showNotif: false,
+  setShowNotif: () => { }
 })
 
-function MyPokemonProvider({ children, value }) {
-  return <MyPokemonContext.Provider value={value}>
+function AppProvider({ children, value }) {
+  return <AppContext.Provider value={value}>
     {children}
-  </MyPokemonContext.Provider>
+  </AppContext.Provider>
 }
 
 export {
-  MyPokemonContext,
-  MyPokemonProvider
+  AppContext,
+  AppProvider
 }

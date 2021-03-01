@@ -3,24 +3,14 @@ import styled from '@emotion/styled'
 
 function Listing({ item, lastListElementRef }) {
   return (
-    <ListingCard
-      ref={lastListElementRef}
-      href={`/`}
-    // to={{
-    //   pathname: `/pokemon/${item.name}`,
-    //   state: {
-    //     pokemon: {
-    //       name: item.name,
-    //       image: item.image
-    //     }
-    //   }
-    // }}
-    >
-      <ImageWrapper>
-        <StyledImage src={item.image} />
-      </ImageWrapper>
-      {/* <CardTitle>{item.name}</CardTitle> */}
-    </ListingCard>
+    <Link href={`/pokemon/${item.name}`} passHref>
+      <ListingCard ref={lastListElementRef}>
+        <ImageWrapper>
+          <StyledImage src={item.image} />
+        </ImageWrapper>
+        <CardTitle>{item.name}</CardTitle>
+      </ListingCard>
+    </Link>
   )
 }
 
@@ -66,14 +56,14 @@ const GridListing = styled.div`
   }
 `
 
-const ListingCard = styled(Link)`
+const ListingCard = styled.a`
+  text-decoration: none !important;
   background-color: #ef5350;
   border: 2px solid #d9d9d9;
   border-radius: 10px;
-  text-decoration: none !important;
   &:hover {
     border: 2px solid gray;
-  };
+  }
 `
 
 const ImageWrapper = styled.div`

@@ -1,14 +1,19 @@
+import { useState } from 'react'
 import {
   ApolloProvider
 } from '@apollo/client'
-import { MyPokemonProvider } from '../context'
+import styled from '@emotion/styled'
+import Container from 'react-bootstrap/Container'
+import { AppProvider } from '../context'
 import { useLocalStorage } from '../hooks'
 import client from '../apolloClient'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../styles/globals.css'
+import { Layour, Layout, MainNav } from '../components'
 
 function MyApp({ Component, pageProps }) {
   const [myPokemons, setMyPokemons] = useLocalStorage("my-pokemons", [])
+  const [showNotif, setShowNotif] = useState(false)
 
   function checkNickName(inputName) {
     const index = myPokemons.findIndex(pokemon =>
@@ -31,20 +36,35 @@ function MyApp({ Component, pageProps }) {
     )
   }
 
+  function showHideNotif(bool) {
+    setShowNotif(bool)
+  }
+
   const value = {
     pokemons: myPokemons,
     checkNickName,
     addPokemon,
-    releasePokemon
+    releasePokemon,
+    showNotif,
+    setShowNotif: showHideNotif
   }
 
   return (
     <ApolloProvider client={client}>
-      <MyPokemonProvider value={value}>
-        <Component {...pageProps} />
-      </MyPokemonProvider>
+      <AppProvider value={value}>
+        <StyledContainer fluid="lg">
+          <MainNav />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </StyledContainer>
+      </AppProvider>
     </ApolloProvider>
   )
 }
 
 export default MyApp
+
+const StyledContainer = styled(Container)`
+  padding: 0px;
+`
