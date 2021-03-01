@@ -44,7 +44,6 @@ const BannerContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 30px;
   margin: auto;
   padding: 0 15px;
 `
@@ -55,7 +54,8 @@ const PokemonIcon = styled(Image)`
   object-fit: contain;
 `
 
-const InfoWrapper = styled.div` 
+const InfoWrapper = styled.div`
+  margin-left: 30px;
   text-align: center;  
   color: white;
 `
