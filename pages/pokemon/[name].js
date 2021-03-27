@@ -94,73 +94,75 @@ export default function PokemonDetail() {
       <title>{name ? name : "Pokemon"}</title>
     </Head>
     {
-      loading ? <>
-        <br />
-        <Spinner animation="border" />
-      </> : <>
-          {
-            error && <>
-              <br />
-              <StyledAlert
-                variant="danger"
-              >
-                Fetch data failed. Please refesh your page
-              </StyledAlert>
-            </>
-          }
-          <StyledImg
-            src={image}
-          />
-          <StyledName>{name}</StyledName>
-          <StyledButton
-            onClick={handleCatch}
-            variant="danger"
-          >
-            CATCH
-          </StyledButton>
+      loading ?
+        <>
           <br />
-          <br />
-          <br />
-          <JumbotronWrapper>
-            <JumbotronTitle>General Info</JumbotronTitle>
-            <GeneralJumbotron>
-              <GeneralWrapper>
-                <p>Height</p>
-                <BoldText>{pokemon.height}</BoldText>
-                <p>Weight</p>
-                <BoldText>{pokemon.weight}</BoldText>
-                <p>Types</p>
-                <BoldText>{formatTypes(pokemon.types)}</BoldText>
-              </GeneralWrapper>
-            </GeneralJumbotron>
-          </JumbotronWrapper>
-          <br />
-          <br />
-          <JumbotronWrapper>
-            <JumbotronTitle>Moves</JumbotronTitle>
-            <MoveJumbotron>
-              <MoveWrapper>
-                {
-                  pokemon.moves && pokemon.moves.map((item, index) =>
-                    <BoldText key={index}>{item.move.name}</BoldText>
-                  )
-                }
-              </MoveWrapper>
-            </MoveJumbotron>
-          </JumbotronWrapper>
-          <br />
-          <CatchModal
-            show={showModal}
-            onHide={handleCloseModal}
-            image={image}
-            loading={catchLoading}
-            success={success}
-            nameInput={nameInput}
-            setNameInput={setNameInput}
-            handleSave={handleSavePokemon}
-            error={modalError}
-          />
+          <Spinner animation="border" />
         </>
+        : error ?
+          <>
+            <br />
+            <StyledAlert
+              variant="danger"
+            >
+              Fetch data failed. Please refesh your page
+          </StyledAlert>
+          </>
+          :
+          <>
+            <StyledImg
+              src={image}
+            />
+            <StyledName>{name}</StyledName>
+            <StyledButton
+              onClick={handleCatch}
+              variant="danger"
+            >
+              CATCH
+          </StyledButton>
+            <br />
+            <br />
+            <br />
+            <JumbotronWrapper>
+              <JumbotronTitle>General Info</JumbotronTitle>
+              <GeneralJumbotron>
+                <GeneralWrapper>
+                  <p>Height</p>
+                  <BoldText>{pokemon.height}</BoldText>
+                  <p>Weight</p>
+                  <BoldText>{pokemon.weight}</BoldText>
+                  <p>Types</p>
+                  <BoldText>{formatTypes(pokemon.types)}</BoldText>
+                </GeneralWrapper>
+              </GeneralJumbotron>
+            </JumbotronWrapper>
+            <br />
+            <br />
+            <JumbotronWrapper>
+              <JumbotronTitle>Moves</JumbotronTitle>
+              <MoveJumbotron>
+                <MoveWrapper>
+                  {
+                    pokemon.moves && pokemon.moves.map((item, index) =>
+                      <BoldText key={index}>{item.move.name}</BoldText>
+                    )
+                  }
+                </MoveWrapper>
+              </MoveJumbotron>
+            </JumbotronWrapper>
+            <br />
+            <CatchModal
+              show={showModal}
+              onHide={handleCloseModal}
+              image={image}
+              loading={catchLoading}
+              success={success}
+              nameInput={nameInput}
+              setNameInput={setNameInput}
+              handleSave={handleSavePokemon}
+              error={modalError}
+            />
+          </>
     }
   </>
 }
